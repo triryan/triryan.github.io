@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Ryan&#39;s Demo Site :: Ryan&#39;s Demo Site</title>
+    <title>Multi-language :: Ryan&#39;s Demo Site</title>
 
     
     <link href="/css/nucleus.css?1536116180" rel="stylesheet">
@@ -32,7 +32,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/code-samples/multilanguage/">
     <nav id="sidebar" class="">
 
 
@@ -113,7 +113,7 @@
   
     
     <li data-nav-id="/code-samples/" title="Code samples" class="dd-item 
-        
+        parent
         
         
         ">
@@ -188,8 +188,8 @@
   
     
     <li data-nav-id="/code-samples/multilanguage/" title="Multi-language" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/code-samples/multilanguage/">
@@ -234,30 +234,154 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Ryan's Demo Site</a> > <a href='/code-samples/'>Code samples</a> > Multi-language
+          
+         
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
 
         
         <div id="body-inner">
           
+            <h1>Multi-language</h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
-           
+<pre><code class="language-raw">POST https://api-sandbox.dwolla.com/customers
+Content-Type: application/vnd.dwolla.v1.hal+json
+Accept: application/vnd.dwolla.v1.hal+json
+Authorization: Bearer 0Sn0W6kzNicvoWhDbQcVSKLRUpGjIdlPSEYyrHqrDDoRnQwE7Q
+
+{
+&quot;firstName&quot;: &quot;Joe&quot;,
+&quot;lastName&quot;: &quot;Buyer&quot;,
+&quot;email&quot;: &quot;jbuyer@mail.net&quot;,
+&quot;ipAddress&quot;: &quot;99.99.99.99&quot;
+}
+
+HTTP/1.1 201 Created
+Location: https://api-sandbox.dwolla.com/customers/247b1bd8-f5a0-4b71-a898-f62f67b8ae1c
+</code></pre>
+
+<pre><code class="language-ruby">request_body = {
+  :firstName =&gt; 'Joe',
+  :lastName =&gt; 'Buyer',
+  :email =&gt; 'jbuyer@mail.net',
+  :ipAddress =&gt; '99.99.99.99'
+}
+
+# Using DwollaV2 - https://github.com/Dwolla/dwolla-v2-ruby (Recommended)
+new_customer = app_token.post &quot;customers&quot;, request_body
+new_customer.response_headers[:location] # =&gt; &quot;https://api-sandbox.dwolla.com/customers/247b1bd8-f5a0-4b71-a898-f62f67b8ae1c&quot;
+
+</code></pre>
+
+<pre><code class="language-javascript">var requestBody = {
+  firstName: 'Joe',
+  lastName: 'Buyer',
+  email: 'jbuyer@mail.net',
+  ipAddress: '99.99.99.99'
+};
+
+appToken
+  .post('customers', requestBody)
+  .then(function(res) {
+    res.headers.get('location'); // =&gt; 'https://api-sandbox.dwolla.com/customers/247b1bd8-f5a0-4b71-a898-f62f67b8ae1c'
+  });
+</code></pre>
+
+<pre><code class="language-python">request_body = {
+  'firstName': 'Joe',
+  'lastName': 'Buyer',
+  'email': 'jbuyer@mail.net',
+  'ipAddress': '99.99.99.99'
+}
+
+# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python (Recommended)
+new_customer = app_token.post('customers', request_body)
+new_customer.headers['location'] # =&gt; 'https://api-sandbox.dwolla.com/customers/247b1bd8-f5a0-4b71-a898-f62f67b8ae1c'
+
+</code></pre>
+
+<pre><code class="language-php">&lt;?php
+$customersApi = new DwollaSwagger\CustomersApi($apiClient);
+
+$new_customer = $customersApi-&gt;create([
+  'firstName' =&gt; 'Joe',
+  'lastName' =&gt; 'Buyer',
+  'email' =&gt; 'jbuyer@mail.net',
+  'ipAddress' =&gt; '99.99.99.99'
+]);
+
+print($new_customer); # =&gt; https://api-sandbox.dwolla.com/customers/247b1bd8-f5a0-4b71-a898-f62f67b8ae1c
+?&gt;
+</code></pre>
+
+<pre><code class="language-java">CustomersApi cApi = new CustomersApi(a);
+
+CreateCustomer newCustomerData = new CreateCustomer();
+
+myNewCust.setFirstName(&quot;Joe&quot;);
+myNewCust.setLastName(&quot;Buyer&quot;);
+myNewCust.setEmail(&quot;jbuyer@mail.com&quot;);
+myNewCust.setIpAddress(&quot;99.99.99.99&quot;);
+
+try {
+    Unit$ r = cApi.create(myNewCust);
+    System.out.println(r.getLocationHeader()); // =&gt; https://api-sandbox.dwolla.com/customers/247B1BD8-F5A0-4B71-A898-F62F67B8AE1C
+}
+catch (Exception e) {
+    System.out.println(&quot;Something's up!&quot;);
+}
+</code></pre>
+
+
+<footer class=" footline" >
 	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
-		</p>
-		<ul>
-			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
-			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
-		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
-		</ul>
-	
-  
+</footer>
+
         
         </div> 
         
@@ -308,6 +432,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -323,21 +448,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -366,6 +478,23 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -376,8 +505,10 @@
 
 
         
+            <a class="nav nav-prev" href="/code-samples/dotnet/" title=".NET"> <i class="fas fa-chevron-left"></i></a>
         
-            <a class="nav nav-next" href="/getting-started/" title="Getting Started" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
+        
+            <a class="nav nav-next" href="/code-samples/java/" title="Java" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
         
     </div>
 
@@ -407,4 +538,3 @@
 
   </body>
 </html>
-
